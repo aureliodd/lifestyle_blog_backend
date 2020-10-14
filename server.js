@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 var Post = require('./api/models/Posts');
 
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://durso_aurelio:6RdDEJ6jmDRHvkfR@cluster0.vgxik.mongodb.net/Blogdb?retryWrites=true&w=majority";
+const uri = "mongodb+srv://<username>:<password>@cluster0.vgxik.mongodb.net/Blogdb?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
