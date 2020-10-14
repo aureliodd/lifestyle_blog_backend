@@ -1,0 +1,27 @@
+{
+  "name": "lifestyle",
+  "version": "1.0.0",
+  "description": "Lifestyle è un blog innovativo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aureliodd/lifestyle_blog_backend.git"
+  },
+  "keywords": [
+    "blog",
+    "restful",
+    "backend",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Aurelio D'Urso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aureliodd/lifestyle_blog_backend/issues"
+  },
+  "homepage": "https://github.com/aureliodd/lifestyle_blog_backend#readme"
+}
