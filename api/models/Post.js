@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const Comments = require('./Comment');
 
+var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
   title: {
@@ -49,6 +50,11 @@ var PostSchema = new Schema({
     default: Date.now
   },
 
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }]
+
 });
 
-module.exports = mongoose.model('Posts', PostSchema); //mongoose richiede di chiamare il model e passare due parametri: il nome della tabella, e il riferimento allo schema creato
+module.exports = mongoose.model('Post', PostSchema); //mongoose richiede di chiamare il model e passare due parametri: il nome della tabella, e il riferimento allo schema creato

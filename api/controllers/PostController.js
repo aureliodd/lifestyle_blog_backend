@@ -2,8 +2,7 @@
 
 
 var mongoose = require('mongoose'),
-  Post = mongoose.model('Posts');
-
+  Post = mongoose.model('Post');
 
 exports.list_all_posts = function(req, res) {
 
@@ -17,8 +16,7 @@ exports.list_all_posts = function(req, res) {
     res.json(post);
     
   });
-}
-
+};
 
 exports.create_a_post = function(req, res) {
   
@@ -37,8 +35,7 @@ exports.create_a_post = function(req, res) {
 
 
 exports.delete_a_post = function(req, res) {
-  Post.remove({
-    _id: req.params.postId},
+  Post.remove({_id: req.params.postId},
     function(err, post) {
     if (err)
       res.send(err);
@@ -54,6 +51,5 @@ exports.patch_a_post = function(req, res) {
         res.send(err);
       res.json({ message: 'Post successfully modified' });
     }
-  ); 
-
-}
+  );
+};

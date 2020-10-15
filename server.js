@@ -3,10 +3,11 @@ const express = require('express');
 var app = express();
 const port = process.env.PORT || 3000;
 
-var Post = require('./api/models/Posts');
+var Post = require('./api/models/Post');
+var Comment = require('./api/models/Comment');
 
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://<username>:<password>@cluster0.vgxik.mongodb.net/Blogdb?retryWrites=true&w=majority";
+const uri = "mongodb+srv://durso_aurelio:MYSNJ6qYumNBaGCp@cluster0.vgxik.mongodb.net/Blogdb?retryWrites=true&w=majority";
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
