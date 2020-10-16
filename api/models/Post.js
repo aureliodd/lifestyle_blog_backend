@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-const Comments = require('./Comment');
+//const Comment = require('./Comment');
 
 var Schema = mongoose.Schema;
 
@@ -50,11 +50,10 @@ var PostSchema = new Schema({
     default: Date.now
   },
 
-  comments: [{
+  post_comments: [{
     type: Schema.Types.ObjectId,
     ref: 'Comment'
   }]
+})
 
-});
-
-module.exports = mongoose.model('Post', PostSchema); //mongoose richiede di chiamare il model e passare due parametri: il nome della tabella, e il riferimento allo schema creato
+module.exports = mongoose.model('Post', PostSchema)

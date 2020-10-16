@@ -1,8 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose')
-var Comment = mongoose.model('Comment')
 var Post = mongoose.model('Post')
+var Comment = mongoose.model('Comment')
 
 exports.list_all_comments = function(req, res) {
 
@@ -17,22 +17,24 @@ exports.list_all_comments = function(req, res) {
 
 exports.create_comment_for_a_post = function(req, res){
 
-    console.log("postId", req.params.postId);
+  var new_comment = new Comment(req.body)
 
-    var new_comment = new Comment(req.body)
+  new_comment.save(function(err, comment) {
+    if (err) res.send(err)
 
-     new_comment.save(function(err, post) {
-        if (err) res.send(err)
-        res.json(post)
-      })
+    Post.findOne({ _id: req.params.postId }, function(error,post){
+      post.post_comments.push(comment._id)
+      post.save()
+    })
+    res.json(comment)
+  })
+}
 
-      console.log(Post.findOne({ _id: req.params.postId }))
-
-    Post
-        .findOne({ _id: req.params.postId })
-        .populate('comment')
-        .exec(function(err, post) {
-        if (err) return handleError(err)
-        //console.log("Nuovo commento: ", post)
-      })
+exports.delete_a_comment = function(req, res){
+  Comment.deleteOne({_id: req.params.commentId},
+    function(err, post) {
+    if (err)
+      res.send(err);
+    res.json({post});
+  });
 }

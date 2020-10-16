@@ -6,17 +6,24 @@ var mongoose = require('mongoose'),
 
 exports.list_all_posts = function(req, res) {
 
-  var query = req.query;
 
-  Post.find(query,function(err, post) {
-    
-    if (err)
-      res.send(err);
-
+  /* Post.find(query,function(err, post) {
+    if (err) res.send(err);
     res.json(post);
-    
-  });
+  }); */
+
+  Post 
+    .find()
+    .populate('post_comments') //per ritornare anche i commenti
+    .exec(function (err, post) {
+        if (err) return handleError(err)
+
+        res.json(post)
+    })
+
 };
+
+
 
 exports.create_a_post = function(req, res) {
   
@@ -35,12 +42,14 @@ exports.create_a_post = function(req, res) {
 
 
 exports.delete_a_post = function(req, res) {
-  Post.remove({_id: req.params.postId},
+  Post.deleteOne({_id: req.params.postId},
     function(err, post) {
     if (err)
       res.send(err);
     res.json({ message: 'Post successfully deleted' });
   });
+
+
 };
 
 exports.patch_a_post = function(req, res) { 
