@@ -26,8 +26,11 @@
   },
   "homepage": "https://github.com/aureliodd/lifestyle_blog_backend#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.9"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.9",
+    "mongoose-bcrypt": "^1.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"

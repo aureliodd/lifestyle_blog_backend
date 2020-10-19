@@ -1,6 +1,5 @@
 'use strict';
 var mongoose = require('mongoose');
-//const Comment = require('./Comment');
 
 var Schema = mongoose.Schema;
 

@@ -5,6 +5,7 @@
 module.exports = function(app) {
   var posts = require('../controllers/PostController')
   var comments = require('../controllers/CommentController')
+  var users = require('../controllers/UserController')
 
   // Routes
   app.route('/posts')
@@ -31,4 +32,11 @@ module.exports = function(app) {
     //.get(comments.list_comments_for_a_post)
     .post(comments.create_comment_for_a_post)
 
+
+  app.route('/users')
+    .get(users.get_users)
+    .post(users.create_user)
+
 };
+
+
