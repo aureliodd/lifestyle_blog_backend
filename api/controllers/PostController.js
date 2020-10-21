@@ -1,8 +1,9 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
-  Post = mongoose.model('Post');
+var mongoose = require('mongoose')
+var  Post = mongoose.model('Post')
+var Comment = mongoose.model('Comment')
 
 exports.list_all_posts = function(req, res) {
 
@@ -42,15 +43,28 @@ exports.create_a_post = function(req, res) {
 
 
 exports.delete_a_post = function(req, res) {
-  Post.deleteOne({_id: req.params.postId},
-    function(err, post) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Post successfully deleted' });
-  });
 
-
-};
+  if(req.body){
+    Post.findOne({_id: req.params.postId}, 
+      function(err,post){
+        if(err) res.send(err)
+      
+        for(const comment of post.post_comments)
+          Comment.deleteOne({_id: comment}, 
+            function(err){
+              if(err) res.send(err)
+            })
+        })
+  
+    Post.deleteOne({_id: req.params.postId},
+      function(err) {
+      if (err)
+        res.send(err);
+      res.json({ message: 'Post successfully deleted' });
+    });
+  } else 
+    res.json({message: 'please insert data'})
+}
 
 exports.patch_a_post = function(req, res) { 
   Post.findOneAndUpdate({_id : req.params.postId}, 

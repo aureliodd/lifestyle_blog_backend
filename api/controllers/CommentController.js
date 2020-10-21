@@ -17,17 +17,25 @@ exports.list_all_comments = function(req, res) {
 
 exports.create_comment_for_a_post = function(req, res){
 
-  var new_comment = new Comment(req.body)
 
-  new_comment.save(function(err, comment) {
-    if (err) res.send(err)
+  if(req.body.user && req.body.body){
+    var new_comment = new Comment(req.body)
 
-    Post.findOne({ _id: req.params.postId }, function(error,post){
-      post.post_comments.push(comment._id)
-      post.save()
+    new_comment.save(function(err, comment) {
+      if (err) res.send(err)
+  
+      Post.findOne({ _id: req.params.postId }, function(error,post){
+        if(error) res.json(error)
+        post.post_comments.push(comment._id)
+        post.save()
+      })
+      res.json(comment)
     })
-    res.json(comment)
-  })
+  } else 
+    res.json({message: 'please insert comment'})
+
+
+  
 }
 
 exports.delete_a_comment = function(req, res){
