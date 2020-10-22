@@ -6,13 +6,14 @@ var jwt = require('jsonwebtoken')
 var User = mongoose.model('User')
 
 exports.create_user = function(req, res){
+
     var new_user = new User(req.body)
 
     new_user.save(function(err, user) {
-        if (err) res.send(err)
+        if (err) {res.send(err); return}
 
         res.json(user)
-      })
+    })
 }
 
 exports.get_users = function(req, res){

@@ -13,7 +13,7 @@ var UserSchema = new schema({
 
     password:{
         type: String,
-        required: true
+        required: "per favore inserisci la password"
     }
 })
 
