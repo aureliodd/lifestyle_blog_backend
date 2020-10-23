@@ -36,7 +36,7 @@ app.listen(port);
 
 console.log('blog avviato nella porta: ' + port);
 
-/* app.use(function(req, res) {
+app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
     next(); //necessario per non avere problemi
-  }); */
+  });
