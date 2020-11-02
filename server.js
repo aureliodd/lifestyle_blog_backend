@@ -17,11 +17,26 @@ mongoose.connect(uri, {
   }).catch(err => console.log(err.reason));
 
 
-  app.use(function(req, res, next) {
+/*   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next()
-  })
+  }) */
+
+  app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*')
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept')
+
+
+    // Pass to next layer of middleware
+    next()
+})
 
 
 bodyParser = require('body-parser');
@@ -40,3 +55,9 @@ app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
     next(); //necessario per non avere problemi
   });
+
+
+
+
+
+
